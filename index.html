@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Countryside Japan</title>
+<link rel="preconnect" href="https://i.ytimg.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Modak&family=Moirai+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="bg-fallback"></div>
+<img id="bg" alt="" onerror="this.style.display='none'">
+<video id="bgv" muted loop playsinline preload="auto"></video>
+<div id="vignette"></div>
+
+<div id="clock">
+  <div id="clock-time">--:--</div>
+</div>
+
+<div id="deck" class="glass">
+  <img id="art" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E">
+  <div id="mid">
+    <div id="screen"><div id="title">— — —</div></div>
+    <div id="bar"><div id="fill"></div></div>
+    <div id="stamps"><span id="t-curr">0:00</span><span id="t-dur">0:00</span></div>
+  </div>
+  <div id="eq"></div>
+  <div id="ctrls">
+    <button class="ico" id="prev" title="Previous" aria-label="Previous track">
+      <svg viewBox="0 0 24 24"><path d="M7 5h2.5v14H7zM20 5v14L9.5 12z"/></svg>
+    </button>
+    <button id="play" title="Play" aria-label="Play">
+      <svg id="play-i" viewBox="0 0 24 24"><path d="M7 4.5v15L20 12z"/></svg>
+    </button>
+    <button class="ico" id="next" title="Next" aria-label="Next track">
+      <svg viewBox="0 0 24 24"><path d="M17 5h-2.5v14H17zM4 5v14l10.5-7z"/></svg>
+    </button>
+    <button class="ico" id="mute" title="Mute" aria-label="Mute">
+      <svg id="mute-i" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ─── settings ─────────────────────────────────────────────── -->
+<button id="gear" aria-expanded="false" aria-controls="panel" title="Settings" aria-label="Settings">
+  <svg viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5zm7.4-2.6a7.6 7.6 0 0 0 0-1.8l2-1.5a.5.5 0 0 0 .1-.6l-1.9-3.2a.5.5 0 0 0-.6-.2l-2.3.9a7.3 7.3 0 0 0-1.6-.9l-.3-2.4a.5.5 0 0 0-.5-.4h-3.8a.5.5 0 0 0-.5.4l-.3 2.4a7.3 7.3 0 0 0-1.6.9l-2.3-.9a.5.5 0 0 0-.6.2L2.5 9a.5.5 0 0 0 .1.6l2 1.5a7.6 7.6 0 0 0 0 1.8l-2 1.5a.5.5 0 0 0-.1.6l1.9 3.2a.5.5 0 0 0 .6.2l2.3-.9a7.3 7.3 0 0 0 1.6.9l.3 2.4a.5.5 0 0 0 .5.4h3.8a.5.5 0 0 0 .5-.4l.3-2.4a7.3 7.3 0 0 0 1.6-.9l2.3.9a.5.5 0 0 0 .6-.2l1.9-3.2a.5.5 0 0 0-.1-.6z"/></svg>
+</button>
+
+<div id="panel" class="glass" role="dialog" aria-label="Settings">
+  <h2>Audio Source</h2>
+  <div class="src-tabs">
+    <button type="button" class="src-tab active" id="tab-yt">
+      <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.8 31.8 0 0 0 0 12c0 1.9.2 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.3-1.9.5-3.9.5-5.8 0-1.9-.2-3.9-.5-5.8zM9.5 15.5V8.5l6.5 3.5-6.5 3.5z"/></svg>
+      YouTube
+    </button>
+    <button type="button" class="src-tab" id="tab-spotify">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.899 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.019zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.18-1.38-.72-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.72 1.62.54.3.72 1.02.42 1.56-.3.42-1.02.6-1.56.3z"/></svg>
+      Spotify
+    </button>
+  </div>
+
+  <div class="field" id="wrap-yt">
+    <label for="f-playlist">YouTube playlist link</label>
+    <input type="text" id="f-playlist" placeholder="youtube.com/playlist?list=…" spellcheck="false"
+           autocomplete="off" autocapitalize="none">
+    <span class="err" id="e-playlist"></span>
+    <span class="hint">The playlist must be public or unlisted — private ones won't play.</span>
+  </div>
+
+  <div class="field" id="wrap-spotify">
+    <label for="f-spotify">Spotify playlist / album / track link</label>
+    <input type="text" id="f-spotify" placeholder="open.spotify.com/playlist/…" spellcheck="false"
+           autocomplete="off" autocapitalize="none">
+    <span class="err" id="e-spotify"></span>
+    <span class="hint">Paste a Spotify playlist, album, or track URL or ID.</span>
+  </div>
+
+  <div class="sep"></div>
+
+  <h2>Background Scene</h2>
+  <div class="bg-grid" id="bg-presets"></div>
+
+  <div class="field mt-8">
+    <label for="f-bgfile">Custom Background</label>
+    <label class="bg-upload-btn" for="f-bgfile">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z"/></svg>
+      Upload Video / Image
+    </label>
+    <input type="file" id="f-bgfile" accept="video/*,image/*">
+  </div>
+
+  <div class="field mt-8">
+    <input type="text" id="f-bgurl" placeholder="Or paste background video/image URL…" spellcheck="false" autocomplete="off">
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="row">
+    <button class="btn primary" id="save">Save & Play</button>
+    <button class="btn" id="share">Copy link</button>
+    <button class="btn" id="reset">Reset</button>
+  </div>
+  <span class="hint" id="linkinfo"></span>
+</div>
+
+<div id="credit">
+  <span>Made by <b>Kushal</b></span>
+  <span class="links">
+    <a href="https://www.instagram.com/im_kushal05/" target="_blank" rel="noopener noreferrer"
+       title="Instagram" aria-label="Kushal on Instagram">
+      <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 7.8 2zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4H7.8zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.5-2.9a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/kushal-adhikary-7b4a08381/" target="_blank" rel="noopener noreferrer"
+       title="LinkedIn" aria-label="Kushal on LinkedIn">
+      <svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 23 10.8 23 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2.01 0-2.32 1.57-2.32 3.2V21h-4V9z"/></svg>
+    </a>
+  </span>
+</div>
+
+<button id="sound">Tap for sound</button>
+
+<div id="toast"></div>
+
+<div id="yt"></div>
+<div id="spotify-embed-container">
+  <div id="spotify-embed"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

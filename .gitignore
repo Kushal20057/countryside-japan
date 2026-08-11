@@ -1,0 +1,12 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment and Local Config
+.env
+.env.local
+.vercel
+
+# Logs
+*.log
