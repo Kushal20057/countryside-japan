@@ -148,10 +148,12 @@ function setBgMedia(src, isImage = false) {
     bg.style.display = 'block';
     markBg();
   } else {
-    bg.style.display = 'none';
+    /* Keep poster fallback displayed while video buffers so screen is never black */
+    bg.style.display = 'block';
     bgv.muted = true;
     bgv.playsInline = true;
     bgv.loop = true;
+    bgv.preload = 'auto';
 
     const targetSrc = encodeURI(src);
     if (bgv.getAttribute('src') !== targetSrc && bgv.src !== targetSrc) {
