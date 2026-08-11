@@ -1,11 +1,7 @@
 /* ══ AUTHOR SETTINGS ═════════════════════════════════════════════ */
 const PRESETS = [
   { id: 'chimes', name: '🎐 Wind Chimes', src: 'backgrounds/japanese-furin-wind-chimes-moewalls-com.mp4', fallback: 'japanese-furin-wind-chimes-moewalls-com.mp4' },
-  { id: 'tlou', name: '🌿 The Last of Us', src: 'backgrounds/window-the-last-of-us-moewalls-com.mp4' },
-  { id: 'cafe', name: '☕ Tropical Cafe', src: 'backgrounds/cliffside-tropical-cafe-moewalls-com.mp4' },
-  { id: 'fields', name: '🏔️ Green Fields', src: 'backgrounds/green-fields-and-peaks.3840x2160.mp4' },
-  { id: 'itachi', name: '🌙 Itachi Uchiha', src: 'backgrounds/mylivewallpapers.com-Itachi-Uchiha-Naruto.mp4' },
-  { id: 'chaser', name: '🏎️ Toyota Chaser', src: 'backgrounds/toyota-chaser-drifting-tunnel-moewalls-com.mp4' }
+  { id: 'fields', name: '🏔️ Green Fields', src: 'backgrounds/green-fields-and-peaks.3840x2160.mp4' }
 ];
 
 const MAX_WAIT = 6000;               /* never sit on the loader longer than this */
